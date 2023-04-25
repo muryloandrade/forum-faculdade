@@ -4,7 +4,7 @@ export const Publication = styled.div`
     display: block;
     justify-content: center;
     align-items: center;
-    background-color: green;
+    border: 1px solid black;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     width: 80%;
     height: 100vh;
@@ -18,7 +18,7 @@ export const ContentTwo = styled.div`
 
 export const Content = styled.div`
     display: flex;
-    background-color: red;
+    border: 1px solid black;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     width: 95%;
 `;
@@ -27,7 +27,7 @@ export const Profile = styled.div`
     display: flex;
     justify-content: start;
     align-items: center;
-    background-color: red;
+    border: 1px solid black;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     width: 100%;
     gap: 10px;
