@@ -1,18 +1,22 @@
-import { Profile, Publication,ProfilePhoto,Content,ContentTwo } from "./publi-styled"
+import { Profile, Publication, ProfilePhoto, Content, Information,Text } from "./publi-styled"
 
 export const Publi = () => {
     return (
         <Publication>
             <Profile>
-                <ProfilePhoto  src="https://avatars.githubusercontent.com/u/59853942?v=4" alt="Profile" />
-                <h1>João da Silva</h1>
-            </Profile>
-            <ContentTwo>
+                <ProfilePhoto src="https://avatars.githubusercontent.com/u/104404496?v=4" alt="Profile" />
+                <Information>
+                    <h2>Murylo Andrade Silva</h2>
+                    <h1>Aluno de Sistemas de Informação</h1>
+                </Information>
 
+            </Profile>
             <Content>
-                    <h1>Publicação</h1>
+                <Text>
+
+                    <h1>hoje eu tive a oportunidades de conhecer o joaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaao.</h1>
+                </Text>
             </Content>
-            </ContentTwo>
         </Publication>
     )
 }

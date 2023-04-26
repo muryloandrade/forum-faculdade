@@ -10,17 +10,43 @@ export const Publication = styled.div`
     height: 100vh;
 `;
 
-export const ContentTwo = styled.div`
-    display: flex;
-    justify-content: end;
-    width: 100%;
-`;
 
 export const Content = styled.div`
     display: flex;
     border: 1px solid black;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-    width: 95%;
+    width: 100%;
+
+
+`;
+
+export const Text = styled.div`
+    > h1 {
+        font-size: 14px; /* Reduza o tamanho da fonte */
+        line-height: 1.2;
+        font-weight: normal;
+    }
+    `;
+
+export const Information = styled.div`
+    display: block;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    width: 100%;
+    > h1 {
+        font-size: 15px;
+        font-weight: bold;
+        font-weight: 100;
+
+    }
+    > h2 {
+        font-size: 20px;
+        font-weight: bold;
+        font-weight: 100;
+
+    }
+
 `;
 
 export const Profile = styled.div`
@@ -39,7 +65,7 @@ export const ProfilePhoto = styled.img`
     align-items: center;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     border-radius: 50%;
-    height: 50px;
-    width: 50px;
+    height: 75px;
+    width: 75px;
     ;
 `;
