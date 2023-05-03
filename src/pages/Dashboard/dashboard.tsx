@@ -1,20 +1,13 @@
 
 import { Publi } from "../../components/Publicação/publi"
-import { NavBar,DivPubli,DivPubli2,Logo } from "./dashboard-styled"
-import LogoImg from "../../assets/studyShare-retangle.png"
+import { DivPubli,DivPubli2 } from "./dashboard-styled"
+import { NavBar } from "../../components/NavBar/Navbar"
 
 
 export const Dashboard = () => {
     return (
         <>
-            <NavBar>
-                <Logo src={LogoImg}/>
-                <div>
-                    <button>Home</button>
-                    <button>Perfil</button>
-                    <button>Logout</button>
-                </div>
-            </NavBar>
+            <NavBar />
             <DivPubli2>
 
             <DivPubli>
