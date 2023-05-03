@@ -7,26 +7,13 @@ export const Publication = styled.div`
     border: 1px solid black;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     width: 80%;
-    height: 100vh;
-`;
-
-
-export const Content = styled.div`
-    display: flex;
-    border: 1px solid black;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-    width: 100%;
-
+    background-color: green;
 
 `;
 
-export const Text = styled.div`
-    > h1 {
-        font-size: 14px; /* Reduza o tamanho da fonte */
-        line-height: 1.2;
-        font-weight: normal;
-    }
-    `;
+
+
+
 
 export const Information = styled.div`
     display: block;

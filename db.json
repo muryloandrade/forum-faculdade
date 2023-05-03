@@ -3,6 +3,17 @@
       {
         "nameUser": "Jhon Doe",
         "date": "2019-01-01",
+        "role": "Aluno",
+        "Course": "Engenharia de Software",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, quis ali",
+        "photo": "https://picsum.photos/200/300/?random",
+        "likes": 0
+      },
+      {
+        "nameUser":"Ana Doe",
+        "date": "2019-01-01",
+        "role": "Aluno",
+        "Course": "Engenharia de Software",
         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, quis ali",
         "photo": "https://picsum.photos/200/300/?random",
         "likes": 0

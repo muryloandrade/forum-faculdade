@@ -1,22 +1,41 @@
-import { Profile, Publication, ProfilePhoto, Content, Information,Text } from "./publi-styled"
+import { useEffect, useState } from "react"
+import { Profile, Publication, ProfilePhoto, Information } from "./publi-styled"
+import axios from "axios"
+
+interface Users {
+    nameUser: string
+    date: string
+    role: string
+    Course: string
+    content: string
+    photo: string
+    likes: number
+}
 
 export const Publi = () => {
+    const [users, setUsers] = useState<Users[]>([])
+    useEffect(() => {
+        axios.get('http://localhost:7010/posts').then(response => {
+            setUsers(response.data)
+        })
+    }, [])
+
     return (
         <Publication>
-            <Profile>
-                <ProfilePhoto src="https://avatars.githubusercontent.com/u/104404496?v=4" alt="Profile" />
-                <Information>
-                    <h2>Murylo Andrade Silva</h2>
-                    <h1>Aluno de Sistemas de Informação</h1>
-                </Information>
+            {users.map(user => (
+                <>
+                <Profile>
+                    <ProfilePhoto src={user.photo} className="rounded-circle" alt="Profile" />
+                    <Information>
+                        <h2>{user.nameUser}</h2>
+                        <h1>{user.role} de {user.Course}</h1>
+                    </Information>
+                </Profile><div>
+                        <p className="lh-1">{user.content}</p>
+                    </div>
+                    </>
+            ))}
 
-            </Profile>
-            <Content>
-                <Text>
-
-                    <h1>hoje eu tive a oportunidades de conhecer o joaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaao.</h1>
-                </Text>
-            </Content>
         </Publication>
     )
 }
