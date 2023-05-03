@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const Publication = styled.div`
-    display: block;
-    justify-content: center;
-    align-items: center;
     border: 1px solid black;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     width: 80%;
-    background-color: green;
-
+    margin: 0 auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 1em;
+    
 `;
 
 

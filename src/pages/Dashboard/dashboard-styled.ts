@@ -11,7 +11,7 @@ export const NavBar = styled.div`
 `;
 
 export const DivPubli = styled.div`
-    display: flex;
+    display: inline;
     justify-content: center;
     background-color: white;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);

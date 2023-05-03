@@ -21,21 +21,22 @@ export const Publi = () => {
     }, [])
 
     return (
-        <Publication>
+        <>
             {users.map(user => (
-                <>
-                <Profile>
-                    <ProfilePhoto src={user.photo} className="rounded-circle" alt="Profile" />
-                    <Information>
-                        <h2>{user.nameUser}</h2>
-                        <h1>{user.role} de {user.Course}</h1>
-                    </Information>
-                </Profile><div>
+                <Publication>
+                    <Profile>
+                        <ProfilePhoto src={user.photo} className="rounded-circle" alt="Profile" />
+                        <Information>
+                            <h2>{user.nameUser}</h2>
+                            <h1>{user.role} de {user.Course}</h1>
+                        </Information>
+                    </Profile><div>
                         <p className="lh-1">{user.content}</p>
                     </div>
-                    </>
+                </Publication>
             ))}
+        </>
 
-        </Publication>
+
     )
 }
