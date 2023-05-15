@@ -1,13 +1,24 @@
 import { Button, Input, Modal, TextareaAutosize } from "@material-ui/core";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import UploadButton from "./UploadButton/UploadButton";
 import axios from "axios";
 
+interface IPost {
+  nameUser: string;
+  date: string;
+  role: string;
+  Course: string;
+  content: string;
+  photo: string;
+  likes: number;
+  id: number;
+}
+
 export const NewPublic = () => {
   const [ModalOpen, setModalOpen] = useState(false);
-  const [file, setFile] = useState<File | undefined>(undefined);
-  const [selectCourse, setSelectCourse] = useState<string>("");
-  const [selectCategory, setSelectCategory] = useState<string>("");
+  // const [file, setFile] = useState<File | undefined>(undefined);
+  const [selectCourse, setSelectCourse] = useState<string>("Administração");
+  const [selectCategory, setSelectCategory] = useState<string>("Professor");
   const [contentPost, setContentPost] = useState<string>("");
   const [name, setName] = useState<string>("");
 
@@ -19,18 +30,21 @@ export const NewPublic = () => {
     setModalOpen(true);
   };
 
-  const SavePost = useCallback(() => {
-    const data = new FormData();
-    axios.post("http://localhost:7010/posts", {
-      nameUser: name,
-      date: data,
-      role: selectCategory,
-      Course: selectCourse,
-      content: contentPost,
-      photo: "https://picsum.photos/200/300/?random",
-      likes: 0,
-    });
-  }, [name, selectCategory, selectCourse, contentPost]);
+  const SavePost = async () => {
+    axios
+      .post<IPost>("http://localhost:7010/posts", {
+        nameUser: name,
+        date: "2020-01-01",
+        role: selectCategory,
+        Course: selectCourse,
+        content: contentPost,
+        photo: "https://picsum.photos/200/300/?random",
+        likes: 0,
+        id: 5,
+      })
+      .then((e) => console.log(e.data))
+      .catch((e) => console.log(e));
+  };
 
   const courser = [
     "Administração",
@@ -78,6 +92,10 @@ export const NewPublic = () => {
     "Teologia",
     "Turismo",
   ];
+
+  const handleSelectCourse = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectCourse(event.target.value);
+  };
 
   return (
     <>
@@ -155,6 +173,7 @@ export const NewPublic = () => {
                 outline: "none",
                 marginBottom: "10px",
               }}
+              onChange={(event) => setSelectCategory(event.target.value)}
             >
               <option value="Professor">Professor</option>
               <option value="Aluno">Aluno</option>
@@ -165,11 +184,13 @@ export const NewPublic = () => {
                 width: "100%",
                 border: "none",
                 outline: "none",
+                marginBottom: "10px",
               }}
+              onChange={handleSelectCourse}
             >
-              {courser.map((item) => (
-                <option value={item} onChange={() => setSelectCourse(item)}>
-                  {item}
+              {courser.map((course) => (
+                <option key={course} value={course}>
+                  {course}
                 </option>
               ))}
             </select>
@@ -181,6 +202,7 @@ export const NewPublic = () => {
                 outline: "none",
                 marginTop: "10px",
               }}
+              onChange={(event) => setContentPost(event.target.value)}
             />
             <UploadButton />
             <Button
@@ -189,7 +211,7 @@ export const NewPublic = () => {
                 backgroundColor: "white",
                 marginTop: "10px",
               }}
-              onClick={() => SavePost}
+              onClick={() => SavePost()}
             >
               Publicar
             </Button>
