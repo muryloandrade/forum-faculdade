@@ -2,50 +2,61 @@ import { Input } from "@material-ui/core";
 import { Logo } from "../../components/NavBar/Navbar-styled";
 import LogoImg from "../../assets/studyShare-retangle.png";
 import { useNavigate } from "react-router-dom";
+import { ButtonLogin } from "./login-styled";
 
 export const Login = () => {
   const navigate = useNavigate();
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        backgroundColor: "#0E4159",
-      }}
-    >
+    <div style={{ display: "flex" }}>
       <div
         style={{
-          color: "white",
-          alignItems: "center",
+          display: "flex",
           justifyContent: "center",
+          backgroundColor: "#0E4159",
+          height: "100vh",
+          width: "100%",
         }}
       >
-        <div style={{ width: "100%", justifyContent: "center" }}>
-          <Logo src={LogoImg} />
-        </div>
-        <h2>Compartilhe conhecimento</h2>
         <div
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "300px",
-            flexDirection: "column",
+            color: "white",
+            alignItems: "center",
+            backgroundColor: "#FFFF",
+            padding: "100px",
+            borderRadius: "10px",
+            margin: "auto",
+            gap: "20px",
           }}
         >
-          <Input placeholder="Email" />
-          <Input placeholder="Senha" type="password" />
-          <p>esqueceu a senha?</p>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: "100%",
+            }}
+          >
+            <Logo
+              src={LogoImg}
+              style={{
+                justifyContent: "center",
+                borderRadius: "10px 10px 0 0",
+              }}
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Input placeholder="Email" />
+            <Input placeholder="Senha" type="password" />
+            <p style={{ color: "black" }}>esqueceu a senha?</p>
+          </div>
+          <div>
+            <ButtonLogin onClick={() => navigate("/")}>Entrar</ButtonLogin>
+          </div>
         </div>
-        <div>
-          <button>Cadastrar</button>
-          <button onClick={() => navigate("/")}>Entrar</button>
-        </div>
-      </div>
-      <div>
-        <img
-          src="https://www.es.gov.br/Media/PortalES/_Profiles/c4d8c6e6/d8d1f292/WhatsApp%20Image%202020-07-14%20at%2012.36.56-1-1-1-1.jpeg?v=638030688078577760"
-          alt="alunos estudando"
-        />
       </div>
     </div>
   );

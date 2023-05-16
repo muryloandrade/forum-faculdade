@@ -40,7 +40,7 @@ export const NewPublic = () => {
         content: contentPost,
         photo: "https://picsum.photos/200/300/?random",
         likes: 0,
-        id: 5,
+        id: 6,
       })
       .then((e) => console.log(e.data))
       .catch((e) => console.log(e));
@@ -115,6 +115,7 @@ export const NewPublic = () => {
             borderRadius: "10px",
             padding: "10px",
             marginBottom: "10px",
+            marginTop: "10px",
           }}
         >
           Clique aqui para fazer uma publicação
