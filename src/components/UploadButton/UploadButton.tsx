@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import { Button, Input, makeStyles } from "@material-ui/core";
 import { AiOutlinePaperClip } from "react-icons/ai";
 import { TbPhotoCancel } from "react-icons/tb";
@@ -15,7 +15,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UploadButton: React.FC = () => {
+interface IUploadButton {
+  setImage: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const UploadButton: React.FC<IUploadButton> = ({ setImage }) => {
   const classes = useStyles();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -42,6 +46,11 @@ const UploadButton: React.FC = () => {
     setPreview(null);
   };
 
+  useEffect(() => {
+    if (preview) {
+      setImage(preview);
+    }
+  }, [preview, setImage]);
   return (
     <div>
       <Input

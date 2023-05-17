@@ -16,6 +16,7 @@ interface Users {
   photo: string;
   likes: number;
   id: number;
+  image: "";
 }
 
 interface IPubli {
@@ -79,6 +80,7 @@ export const Publi: React.FC<IPubli> = ({ get }) => {
           </Profile>
           <div>
             <p className="lh-1">{user.content}</p>
+            {user.image !== "" ? <img src={user.image} alt="Post" /> : ""}
           </div>
         </Publication>
       ))}

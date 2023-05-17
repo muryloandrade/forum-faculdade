@@ -13,6 +13,7 @@ interface IPost {
   photo: string;
   likes: number;
   id: number;
+  image: string;
 }
 
 interface INewPublic {
@@ -20,7 +21,7 @@ interface INewPublic {
 }
 export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
   const [ModalOpen, setModalOpen] = useState(false);
-  // const [file, setFile] = useState<File | undefined>(undefined);
+  const [image, setImage] = useState<string>("");
   const [selectCourse, setSelectCourse] = useState<string>("Administração");
   const [selectCategory, setSelectCategory] = useState<string>("Professor");
   const [contentPost, setContentPost] = useState<string>("");
@@ -47,6 +48,7 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
         photo: "https://picsum.photos/200/300/?random",
         likes: 0,
         id: id,
+        image: image === "" ? "" : image,
       })
       .then(() => handleModalClose())
       .catch((e) => console.log(e));
@@ -226,7 +228,7 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
             <div
               style={{ width: "100%", marginTop: "20px", marginBottom: "20px" }}
             >
-              <UploadButton />
+              <UploadButton setImage={setImage} />
             </div>
 
             <Button

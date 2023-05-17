@@ -22,39 +22,59 @@ export const Login = () => {
             color: "white",
             alignItems: "center",
             backgroundColor: "#FFFF",
-            padding: "100px",
+            padding: "80px",
             borderRadius: "10px",
             margin: "auto",
             gap: "20px",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              width: "100%",
-            }}
-          >
-            <Logo
-              src={LogoImg}
+          <div style={{ width: "300px", height: "250px" }}>
+            <div
               style={{
+                display: "flex",
                 justifyContent: "center",
-                borderRadius: "10px 10px 0 0",
+                width: "100%",
               }}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Input placeholder="Email" />
-            <Input placeholder="Senha" type="password" />
-            <p style={{ color: "black" }}>esqueceu a senha?</p>
-          </div>
-          <div>
-            <ButtonLogin onClick={() => navigate("/")}>Entrar</ButtonLogin>
+            >
+              <Logo
+                src={LogoImg}
+                style={{
+                  justifyContent: "center",
+                  borderRadius: "10px 10px 0 0",
+                  width: "100%",
+                }}
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                marginTop: "20px",
+              }}
+            >
+              <Input placeholder="Email" />
+              <Input
+                placeholder="Senha"
+                type="password"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginTop: "20px",
+                }}
+              />
+              <p
+                style={{
+                  color: "black",
+                  justifyContent: "end",
+                  display: "flex",
+                }}
+              >
+                esqueceu a senha?
+              </p>
+            </div>
+            <div>
+              <ButtonLogin onClick={() => navigate("/")}>Entrar</ButtonLogin>
+            </div>
           </div>
         </div>
       </div>
