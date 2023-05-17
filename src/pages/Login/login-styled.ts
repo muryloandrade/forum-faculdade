@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const ButtonLogin = styled.button`
-  background-color: #0e4159;
-  border: none;
+  border: 2px solid #72bf44;
+  background-color: transparent;
   border-radius: 5px;
-  color: #ffff;
+  color: "black";
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;

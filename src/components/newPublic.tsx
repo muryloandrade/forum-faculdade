@@ -117,7 +117,7 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
         <Button
           onClick={handleOpen}
           style={{
-            backgroundColor: "#0E4159",
+            backgroundColor: "#72bf44",
             color: "white",
             width: "80%",
             borderRadius: "10px",
@@ -156,7 +156,7 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
           >
             <div
               style={{
-                borderBottom: "2px solid #0E4159",
+                borderBottom: "2px solid #72bf44",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
@@ -226,7 +226,11 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
               onChange={(event) => setContentPost(event.target.value)}
             />
             <div
-              style={{ width: "100%", marginTop: "20px", marginBottom: "20px" }}
+              style={{
+                width: "100%",
+                marginTop: "20px",
+                marginBottom: "20px",
+              }}
             >
               <UploadButton setImage={setImage} />
             </div>
@@ -234,8 +238,9 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
             <Button
               style={{
                 width: "100%",
-                backgroundColor: "#0E4159",
-                color: "white",
+                backgroundColor: "transparent",
+                color: "black",
+                border: "2px solid #72bf44",
               }}
               onClick={() => SavePost()}
             >

@@ -9,7 +9,7 @@ export const NavBar = () => {
   const navigate = useNavigate();
   return (
     <NavBarElement>
-      <Logo src={LogoImg} />
+      <Logo src="https://uniessa.com.br/wp-content/uploads/2022/09/log-uniessa.png.webp" />
       <DivButtons>
         <ButtonNavi>
           <AiFillHome />

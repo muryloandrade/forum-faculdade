@@ -62,7 +62,16 @@ const UploadButton: React.FC<IUploadButton> = ({ setImage }) => {
       />
       {!selectedFile && (
         <label htmlFor="upload-button">
-          <Button variant="contained" color="primary" component="span">
+          <Button
+            variant="contained"
+            color="primary"
+            component="span"
+            style={{
+              color: "#72bf44",
+              border: "1px solid #72bf44",
+              backgroundColor: "#FFFF",
+            }}
+          >
             <AiOutlinePaperClip />
           </Button>
         </label>

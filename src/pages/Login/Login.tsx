@@ -3,6 +3,7 @@ import { Logo } from "../../components/NavBar/Navbar-styled";
 import LogoImg from "../../assets/studyShare-retangle.png";
 import { useNavigate } from "react-router-dom";
 import { ButtonLogin } from "./login-styled";
+import LogoUniessa from "../../assets/uniessa/logo-uniessa-top.png";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export const Login = () => {
         style={{
           display: "flex",
           justifyContent: "center",
-          backgroundColor: "#0E4159",
+          backgroundColor: "#164285",
           height: "100vh",
           width: "100%",
         }}
@@ -21,7 +22,7 @@ export const Login = () => {
           style={{
             color: "white",
             alignItems: "center",
-            backgroundColor: "#FFFF",
+            backgroundColor: "white",
             padding: "80px",
             borderRadius: "10px",
             margin: "auto",
@@ -37,7 +38,7 @@ export const Login = () => {
               }}
             >
               <Logo
-                src={LogoImg}
+                src={LogoUniessa}
                 style={{
                   justifyContent: "center",
                   borderRadius: "10px 10px 0 0",
@@ -64,9 +65,10 @@ export const Login = () => {
               />
               <p
                 style={{
-                  color: "black",
+                  color: "white",
                   justifyContent: "end",
                   display: "flex",
+                  cursor: "pointer",
                 }}
               >
                 esqueceu a senha?
