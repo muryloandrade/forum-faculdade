@@ -59,9 +59,10 @@ export const Publi: React.FC<IPubli> = ({ get }) => {
     });
   }, []);
 
+  const posts = [...users].reverse();
   return (
     <>
-      {users.map((user) => (
+      {posts.map((user) => (
         <Publication key={user.id}>
           <Profile>
             <ProfilePhoto
