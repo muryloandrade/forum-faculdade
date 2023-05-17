@@ -18,8 +18,41 @@ interface Users {
   id: number;
 }
 
-export const Publi = () => {
+interface IPubli {
+  get: boolean;
+}
+
+export const Publi: React.FC<IPubli> = ({ get }) => {
   const [users, setUsers] = useState<Users[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get("http://localhost:7010/posts");
+        setUsers(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+        setLoading(false);
+      }
+    };
+
+    if (get) {
+      fetchPosts();
+    }
+
+    const checkForNewPosts = setInterval(() => {
+      if (get) {
+        fetchPosts();
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(checkForNewPosts);
+    };
+  }, [get]);
+
   useEffect(() => {
     axios.get("http://localhost:7010/posts").then((response) => {
       setUsers(response.data);

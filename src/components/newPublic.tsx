@@ -1,6 +1,7 @@
 import { Button, Input, Modal, TextareaAutosize } from "@material-ui/core";
 import { useCallback, useEffect, useState } from "react";
 import UploadButton from "./UploadButton/UploadButton";
+import { nanoid } from "nanoid";
 import axios from "axios";
 
 interface IPost {
@@ -14,15 +15,20 @@ interface IPost {
   id: number;
 }
 
-export const NewPublic = () => {
+interface INewPublic {
+  setGet: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
   const [ModalOpen, setModalOpen] = useState(false);
   // const [file, setFile] = useState<File | undefined>(undefined);
   const [selectCourse, setSelectCourse] = useState<string>("Administração");
   const [selectCategory, setSelectCategory] = useState<string>("Professor");
   const [contentPost, setContentPost] = useState<string>("");
   const [name, setName] = useState<string>("");
+  const id = nanoid();
 
   const handleModalClose = () => {
+    setGet(true);
     setModalOpen(false);
   };
 
@@ -40,9 +46,9 @@ export const NewPublic = () => {
         content: contentPost,
         photo: "https://picsum.photos/200/300/?random",
         likes: 0,
-        id: 6,
+        id: id,
       })
-      .then((e) => console.log(e.data))
+      .then(() => handleModalClose())
       .catch((e) => console.log(e));
   };
 
@@ -138,8 +144,9 @@ export const NewPublic = () => {
           <div
             style={{
               color: "white",
-              backgroundColor: "#0E4159",
+              backgroundColor: "#ffff",
               padding: "20px",
+              minWidth: "500px",
               borderRadius: "10px",
               width: "fit-content",
               height: "fit-content",
@@ -147,70 +154,86 @@ export const NewPublic = () => {
           >
             <div
               style={{
-                borderBottom: "1px solid white",
+                borderBottom: "2px solid #0E4159",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
+                marginBottom: "10px",
               }}
             >
-              <p>Comece uma nova Publicação</p>
-              <Button style={{ color: "white" }}>X</Button>
+              <p style={{ color: "black", marginTop: "12px" }}>
+                Nova Publicação
+              </p>
+              <Button style={{ color: "black" }} onClick={handleModalClose}>
+                X
+              </Button>
             </div>
-            <Input
-              placeholder="qual o seu nome?"
-              onChange={(event) => setName(event.target.value)}
-            />
-            <p
-              style={{
-                marginTop: "10px",
-              }}
-            >
-              Selecione sua categoria:
-            </p>
-            <select
-              style={{
-                width: "100%",
-                border: "none",
-                outline: "none",
-                marginBottom: "10px",
-              }}
-              onChange={(event) => setSelectCategory(event.target.value)}
-            >
-              <option value="Professor">Professor</option>
-              <option value="Aluno">Aluno</option>
-            </select>
-            <p>Qual o seu curso?</p>
-            <select
-              style={{
-                width: "100%",
-                border: "none",
-                outline: "none",
-                marginBottom: "10px",
-              }}
-              onChange={handleSelectCourse}
-            >
-              {courser.map((course) => (
-                <option key={course} value={course}>
-                  {course}
-                </option>
-              ))}
-            </select>
+            <div style={{ width: "100%", marginBottom: "20px" }}>
+              <Input
+                placeholder="qual o seu nome?"
+                onChange={(event) => setName(event.target.value)}
+              />
+            </div>
+            <div style={{ width: "100%", marginBottom: "20px" }}>
+              <p
+                style={{
+                  color: "black",
+                  margin: "0px",
+                }}
+              >
+                Selecione sua Ocupação:
+              </p>
+              <select
+                style={{
+                  width: "100%",
+                  border: "none",
+                  outline: "none",
+                }}
+                onChange={(event) => setSelectCategory(event.target.value)}
+              >
+                <option value="Professor">Professor</option>
+                <option value="Aluno">Aluno</option>
+              </select>
+            </div>
+            <div style={{ width: "100%", marginBottom: "20px" }}>
+              <p style={{ color: "black", margin: "0px" }}>Qual o seu curso?</p>
+              <select
+                style={{
+                  width: "100%",
+                  border: "none",
+                  outline: "none",
+                }}
+                onChange={handleSelectCourse}
+              >
+                {courser.map((course) => (
+                  <option key={course} value={course}>
+                    {course}
+                  </option>
+                ))}
+              </select>
+            </div>
+
             <TextareaAutosize
               placeholder="O que deseja compartilhar hoje?"
               style={{
                 width: "100%",
+                height: "100px",
                 border: "none",
                 outline: "none",
-                marginTop: "10px",
               }}
               onChange={(event) => setContentPost(event.target.value)}
             />
-            <UploadButton />
+            <div
+              style={{ width: "100%", marginTop: "20px", marginBottom: "20px" }}
+            >
+              <UploadButton />
+            </div>
+
             <Button
               style={{
                 width: "100%",
-                backgroundColor: "white",
-                marginTop: "10px",
+                backgroundColor: "#0E4159",
+                color: "white",
               }}
               onClick={() => SavePost()}
             >
