@@ -80,7 +80,13 @@ export const Publi: React.FC<IPubli> = ({ get }) => {
           </Profile>
           <div>
             <p className="lh-1">{user.content}</p>
-            {user.image !== "" ? <img src={user.image} alt="Post" /> : ""}
+            <div style={{ width: "100%" }}>
+              {user.image !== "" ? (
+                <img src={user.image} style={{ maxWidth: "80%" }} alt="Post" />
+              ) : (
+                ""
+              )}
+            </div>
           </div>
         </Publication>
       ))}
