@@ -68,10 +68,10 @@ export const Publi: React.FC<IPubli> = ({ get }) => {
           <Profile>
             <ProfilePhoto
               src={user.photo}
-              className="rounded-circle"
+              className="rounded-circle m-1"
               alt="Profile"
             />
-            <Information>
+            <Information className="">
               <h2>{user.nameUser}</h2>
               <h1>
                 {user.role} de {user.Course}
@@ -79,7 +79,7 @@ export const Publi: React.FC<IPubli> = ({ get }) => {
             </Information>
           </Profile>
           <div>
-            <p className="lh-1">{user.content}</p>
+            <p className="lh-1 mt-3">{user.content}</p>
             <div style={{ width: "100%" }}>
               {user.image !== "" ? (
                 <img src={user.image} style={{ maxWidth: "80%" }} alt="Post" />
