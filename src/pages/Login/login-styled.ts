@@ -9,6 +9,5 @@ export const ButtonLogin = styled.button`
   font-size: 16px;
   font-weight: bold;
   height: 40px;
-  margin-top: 20px;
   width: 100%;
 `;

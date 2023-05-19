@@ -62,6 +62,8 @@
       "email":"murylo@dev.com",
       "password":"12345",
       "id":"2sMB1JO0HCM5AJo1xKVyS",
+      "role":"Aluno",
+      "Course":"Administração",
       "photoUser":"https://picsum.photos/200/300/?random"
     },
     {
@@ -69,6 +71,8 @@
       "email":"daniel@gmail.com",
       "password":"12345",
       "id":"5dGOyAbIh0zXsr_j-znsQ",
+      "role":"Professor",
+      "Course":"Arquitetura e Urbanismo",
       "photoUser":"https://picsum.photos/200/300/?random"
     }
   ]
