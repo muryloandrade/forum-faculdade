@@ -5,49 +5,47 @@ import { useNavigate } from "react-router-dom";
 import { ButtonLogin } from "./login-styled";
 import LogoUniessa from "../../assets/uniessa/logo-uniessa-top.png";
 import { useCallback, useEffect, useState } from "react";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../config/firebase";
 import axios from "axios";
+import { set } from "firebase/database";
+
+interface IUser {
+  nameUser: string;
+  email: string;
+  password: string;
+  id: string;
+  photo: string;
+}
 
 export const Login = () => {
   const navigate = useNavigate();
+  const [userVerify, setUserVerify] = useState<boolean>(false); // [
+  const [user, setUser] = useState<IUser>();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState({});
-  useEffect(() => {
-    const AuthCheck = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(false);
-      }
-    });
-    return () => AuthCheck();
-  }, []);
-  const Auth = async (email: string, password: string) => {
-    try {
-      const usr = await signInWithEmailAndPassword(auth, email, password);
-      const token = (await usr.user.getIdTokenResult()).token;
-      axios
-        .get("https://login-client-om32e3yzoa-uc.a.run.app/authentication", {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((response) => {
-          console.log(response.data, "Deu bom o login");
-          navigate("/");
-        })
-        .catch((error) => {
-          console.log(error.data);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const Logar = useCallback(() => {
-    Auth(email, password);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    axios
+      .get(`http://localhost:7010/users?email=${email}`)
+      .then((response) => {
+        setUser(response.data[0]);
+        if (response.data[0].password === password) {
+          setUserVerify(true);
+        } else if (response.data[0].password !== password) {
+          alert("Senha incorreta");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Email não cadastrado");
+      });
   }, [email, password]);
+
+  useEffect(() => {
+    if (userVerify) {
+      navigate("/", { state: user });
+    }
+  }, [userVerify, navigate, user]);
+
   return (
     <div style={{ display: "flex" }}>
       <div
