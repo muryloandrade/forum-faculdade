@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import UploadButton from "./UploadButton/UploadButton";
 import { nanoid } from "nanoid";
 import axios from "axios";
+import { set } from "firebase/database";
 
 interface IPost {
   nameUser: string;
@@ -24,6 +25,7 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
   const [image, setImage] = useState<string>("");
   const [selectCourse, setSelectCourse] = useState<string>("Administração");
   const [selectCategory, setSelectCategory] = useState<string>("Professor");
+  const [photoUser, setPhotoUser] = useState<string>("");
   const [contentPost, setContentPost] = useState<string>("");
   const [name, setName] = useState<string>("");
   const id = nanoid();
@@ -37,6 +39,14 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
     setModalOpen(true);
   };
 
+  useEffect(() => {
+    localStorage.getItem("user") &&
+      setName(JSON.parse(localStorage.getItem("user") || "{}").nameUser);
+    setSelectCategory(JSON.parse(localStorage.getItem("user") || "{}").role);
+    setSelectCourse(JSON.parse(localStorage.getItem("user") || "{}").Course);
+    setPhotoUser(JSON.parse(localStorage.getItem("user") || "{}").photoUser);
+  }, []);
+
   const SavePost = async () => {
     axios
       .post<IPost>("http://localhost:7010/posts", {
@@ -45,7 +55,7 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
         role: selectCategory,
         Course: selectCourse,
         content: contentPost,
-        photo: "https://picsum.photos/200/300/?random",
+        photo: photoUser,
         likes: 0,
         id: id,
         image: image === "" ? "" : image,
@@ -54,56 +64,56 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
       .catch((e) => console.log(e));
   };
 
-  const courser = [
-    "Administração",
-    "Agronomia",
-    "Arquitetura e Urbanismo",
-    "Artes Visuais",
-    "Biomedicina",
-    "Ciência da Computação",
-    "Ciências Biológicas",
-    "Ciências Contábeis",
-    "Ciências Econômicas",
-    "Design",
-    "Direito",
-    "Educação Física",
-    "Enfermagem",
-    "Engenharia Ambiental e Sanitária",
-    "Engenharia Civil",
-    "Engenharia de Produção",
-    "Engenharia Elétrica",
-    "Engenharia Mecânica",
-    "Engenharia Química",
-    "Estética e Cosmética",
-    "Farmácia",
-    "Fisioterapia",
-    "Fonoaudiologia",
-    "Gastronomia",
-    "Gestão Comercial",
-    "Gestão de Recursos Humanos",
-    "Gestão Financeira",
-    "Jornalismo",
-    "Letras",
-    "Logística",
-    "Marketing",
-    "Medicina Veterinária",
-    "Nutrição",
-    "Odontologia",
-    "Pedagogia",
-    "Psicologia",
-    "Publicidade e Propaganda",
-    "Radiologia",
-    "Relações Internacionais",
-    "Relações Públicas",
-    "Serviço Social",
-    "Sistemas de Informação",
-    "Teologia",
-    "Turismo",
-  ];
+  // const courser = [
+  //   "Administração",
+  //   "Agronomia",
+  //   "Arquitetura e Urbanismo",
+  //   "Artes Visuais",
+  //   "Biomedicina",
+  //   "Ciência da Computação",
+  //   "Ciências Biológicas",
+  //   "Ciências Contábeis",
+  //   "Ciências Econômicas",
+  //   "Design",
+  //   "Direito",
+  //   "Educação Física",
+  //   "Enfermagem",
+  //   "Engenharia Ambiental e Sanitária",
+  //   "Engenharia Civil",
+  //   "Engenharia de Produção",
+  //   "Engenharia Elétrica",
+  //   "Engenharia Mecânica",
+  //   "Engenharia Química",
+  //   "Estética e Cosmética",
+  //   "Farmácia",
+  //   "Fisioterapia",
+  //   "Fonoaudiologia",
+  //   "Gastronomia",
+  //   "Gestão Comercial",
+  //   "Gestão de Recursos Humanos",
+  //   "Gestão Financeira",
+  //   "Jornalismo",
+  //   "Letras",
+  //   "Logística",
+  //   "Marketing",
+  //   "Medicina Veterinária",
+  //   "Nutrição",
+  //   "Odontologia",
+  //   "Pedagogia",
+  //   "Psicologia",
+  //   "Publicidade e Propaganda",
+  //   "Radiologia",
+  //   "Relações Internacionais",
+  //   "Relações Públicas",
+  //   "Serviço Social",
+  //   "Sistemas de Informação",
+  //   "Teologia",
+  //   "Turismo",
+  // ];
 
-  const handleSelectCourse = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectCourse(event.target.value);
-  };
+  // const handleSelectCourse = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setSelectCourse(event.target.value);
+  // };
 
   return (
     <>
@@ -170,34 +180,7 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
                 X
               </Button>
             </div>
-            <div style={{ width: "100%", marginBottom: "20px" }}>
-              <Input
-                placeholder="qual o seu nome?"
-                onChange={(event) => setName(event.target.value)}
-              />
-            </div>
-            <div style={{ width: "100%", marginBottom: "20px" }}>
-              <p
-                style={{
-                  color: "black",
-                  margin: "0px",
-                }}
-              >
-                Selecione sua Ocupação:
-              </p>
-              <select
-                style={{
-                  width: "100%",
-                  border: "none",
-                  outline: "none",
-                }}
-                onChange={(event) => setSelectCategory(event.target.value)}
-              >
-                <option value="Professor">Professor</option>
-                <option value="Aluno">Aluno</option>
-              </select>
-            </div>
-            <div style={{ width: "100%", marginBottom: "20px" }}>
+            {/* <div style={{ width: "100%", marginBottom: "20px" }}>
               <p style={{ color: "black", margin: "0px" }}>Qual o seu curso?</p>
               <select
                 style={{
@@ -213,7 +196,7 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
                   </option>
                 ))}
               </select>
-            </div>
+            </div> */}
 
             <TextareaAutosize
               placeholder="O que deseja compartilhar hoje?"
