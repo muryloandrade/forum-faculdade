@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Profile,
   Publication,
@@ -15,15 +15,23 @@ interface Users {
   content: string;
   photo: string;
   likes: number;
-  id: number;
+  id: "";
   image: "";
 }
 
 interface IPubli {
   get: boolean;
+  coments: boolean;
+  setComents: React.Dispatch<React.SetStateAction<boolean>>;
+  setIdpost: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const Publi: React.FC<IPubli> = ({ get }) => {
+export const Publi: React.FC<IPubli> = ({
+  get,
+  coments,
+  setComents,
+  setIdpost,
+}) => {
   const [users, setUsers] = useState<Users[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -60,6 +68,14 @@ export const Publi: React.FC<IPubli> = ({ get }) => {
     });
   }, []);
 
+  const handleViewcoments = useCallback(
+    (idPost: string) => {
+      setComents(!coments);
+      setIdpost(idPost);
+    },
+    [coments, setComents, setIdpost]
+  );
+
   const posts = [...users].reverse();
   return (
     <>
@@ -87,6 +103,16 @@ export const Publi: React.FC<IPubli> = ({ get }) => {
                 ""
               )}
             </div>
+          </div>
+          <div
+            style={{
+              textDecoration: "underline",
+              cursor: "pointer",
+              width: "fit-content",
+            }}
+            onClick={() => handleViewcoments(user.id)}
+          >
+            ver comentários
           </div>
         </Publication>
       ))}
