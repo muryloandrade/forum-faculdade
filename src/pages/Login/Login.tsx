@@ -1,7 +1,7 @@
 import { Input } from "@material-ui/core";
 import { Logo } from "../../components/NavBar/Navbar-styled";
 import LogoImg from "../../assets/studyShare-retangle.png";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { ButtonLogin } from "./login-styled";
 import LogoUniessa from "../../assets/uniessa/logo-uniessa-top.png";
 import { useCallback, useEffect, useState } from "react";
@@ -157,7 +157,12 @@ export const Login = () => {
                 onClick={() => navigate("/cadastro")}
                 style={{ marginTop: "10px", border: "2px solid #164285" }}
               >
-                Cadastrar
+                <NavLink
+                  to="/cadastro"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  Cadastrar
+                </NavLink>
               </ButtonLogin>
             </div>
           </div>
