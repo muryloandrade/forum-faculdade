@@ -140,7 +140,15 @@ export const Coments: React.FC<INewPublic> = ({
               }}
             >
               {comenta.length < 1 ? (
-                <div>NÃO TEM COMENTÁRIOS</div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  NÃO TEM COMENTÁRIOS
+                </div>
               ) : (
                 comenta.map((user) => (
                   <div key={user.id} style={{ overflow: "auto" }}>
@@ -184,6 +192,7 @@ export const Coments: React.FC<INewPublic> = ({
                   border: "1px solid #72bf44",
                   outline: "none",
                 }}
+                value={contentPost}
                 onChange={(event) => setContentPost(event.target.value)}
               />
 
