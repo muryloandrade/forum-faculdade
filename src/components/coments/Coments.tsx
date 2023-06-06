@@ -63,7 +63,18 @@ export const Coments: React.FC<INewPublic> = ({
         id: id,
         image: "",
       })
-      .then(() => console.log("teste"))
+      .then(() => {
+        console.log("Comentário adicionado com sucesso!");
+        setContentPost("");
+        axios
+          .get(`http://localhost:7010/comentsPosts?idPost=${idpost}`)
+          .then((res) => {
+            setComenta(res.data);
+          })
+          .catch((res) => {
+            console.log(res);
+          });
+      })
       .catch((e) => console.log(e));
   };
 

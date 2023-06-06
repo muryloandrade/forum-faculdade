@@ -79,11 +79,11 @@
       "id": "2sMB1JO0HCM5AJo1xKVyS",
       "role": "Aluno",
       "Course": "Administração",
-      "photoUser": "https://picsum.photos/200/300/?random"
+      "photoUser": "https://avatars.githubusercontent.com/u/104404496?v=4"
     },
     {
-      "nameUser": "daniel",
-      "email": "daniel@gmail.com",
+      "nameUser": "vitor",
+      "email": "vitor@dev.com",
       "password": "12345",
       "id": "5dGOyAbIh0zXsr_j-znsQ",
       "role": "Professor",
