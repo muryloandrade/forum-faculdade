@@ -1,13 +1,11 @@
 import { Input } from "@material-ui/core";
 import { Logo } from "../../components/NavBar/Navbar-styled";
-import LogoImg from "../../assets/studyShare-retangle.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ButtonLogin } from "./login-styled";
 import LogoUniessa from "../../assets/uniessa/logo-uniessa-top.png";
 import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import Alert from "@mui/material/Alert";
-import Stack from "@mui/material/Stack";
 
 interface IUser {
   nameUser: string;
@@ -32,6 +30,7 @@ export const Login = () => {
         setUser(response.data[0]);
         if (response.data[0].password === password) {
           setUserVerify(true);
+          localStorage.setItem("user", JSON.stringify(response.data[0]));
         } else if (response.data[0].password !== password) {
           setError("ErroPass");
         }
