@@ -6,6 +6,7 @@ import {
   Information,
 } from "./publi-styled";
 import axios from "axios";
+import { If } from "../../operators";
 
 interface Users {
   nameUser: string;
@@ -35,38 +36,42 @@ export const Publi: React.FC<IPubli> = ({
   const [users, setUsers] = useState<Users[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await axios.get("http://localhost:7010/posts");
-        setUsers(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-        setLoading(false);
-      }
-    };
+  const getPosts = useCallback(async () => {
+    try {
+      const response = await axios.get("http://localhost:7010/posts");
+      setUsers(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+      setLoading(false);
+    }
+  }, []);
 
+  useEffect(() => {
     if (get) {
-      fetchPosts();
+      getPosts();
     }
 
     const checkForNewPosts = setInterval(() => {
       if (get) {
-        fetchPosts();
+        getPosts();
       }
     }, 1000);
 
     return () => {
       clearInterval(checkForNewPosts);
     };
-  }, [get]);
+  }, [get, getPosts]);
 
-  useEffect(() => {
+  const getUsers = useCallback(async () => {
     axios.get("http://localhost:7010/posts").then((response) => {
       setUsers(response.data);
     });
   }, []);
+
+  useEffect(() => {
+    getUsers();
+  }, [getUsers]);
 
   const handleViewcoments = useCallback(
     (idPost: string) => {
@@ -77,9 +82,18 @@ export const Publi: React.FC<IPubli> = ({
   );
 
   const posts = [...users].reverse();
+  const search = localStorage.getItem("search");
+  console.log(search);
+  const filter = posts.filter((user) => {
+    if (search !== null && search !== "") {
+      return user.content.includes(search);
+    } else {
+      return user;
+    }
+  });
   return (
     <>
-      {posts.map((user) => (
+      {filter.map((user) => (
         <Publication key={user.id}>
           <Profile>
             <ProfilePhoto
@@ -116,6 +130,11 @@ export const Publi: React.FC<IPubli> = ({
           </div>
         </Publication>
       ))}
+      <If condition={loading}>
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </If>
     </>
   );
 };

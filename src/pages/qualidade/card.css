@@ -1,0 +1,13 @@
+.card {
+    box-shadow: 1px rgba(0, 0, 0, 0.1);
+    height: 10rem;
+    border: 2px solid #72bf44;
+    padding: 10px;
+    cursor: pointer;
+    transition: box-shadow 0.3s; /* Adiciona uma transição suave para a propriedade box-shadow */
+  }
+
+.card:hover {
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3); /* Altere a sombra do box-shadow no hover */
+  }
+  

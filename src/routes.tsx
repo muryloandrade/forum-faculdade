@@ -4,6 +4,9 @@ import { Dashboard } from "./pages/Dashboard/dashboard";
 import { Login } from "./pages/Login/Login";
 import { Cadastro } from "./pages/Cadastro/Cadastro";
 import { Config } from "./pages/config/config";
+import { Quality } from "./pages/qualidade";
+import { Orthography } from "./pages/qualidade/components/ortografia";
+import { Discipline } from "./pages/qualidade/components/discipline";
 
 const Router: React.FC = () => {
   return (
@@ -13,6 +16,9 @@ const Router: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/config" element={<Config />} />
+        <Route path="/qualidade" element={<Quality />} />
+        <Route path="/qualidade/orthography" element={<Orthography />} />
+        <Route path="/qualidade/discipline" element={<Discipline />} />
         <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
     </BrowserRouter>

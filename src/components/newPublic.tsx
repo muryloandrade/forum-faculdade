@@ -1,9 +1,8 @@
-import { Button, Input, Modal, TextareaAutosize } from "@material-ui/core";
-import { useCallback, useEffect, useState } from "react";
+import { Button, Modal, TextareaAutosize } from "@material-ui/core";
+import { useEffect, useState } from "react";
 import UploadButton from "./UploadButton/UploadButton";
 import { nanoid } from "nanoid";
 import axios from "axios";
-import { set } from "firebase/database";
 
 interface IPost {
   nameUser: string;
@@ -115,6 +114,12 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
   //   setSelectCourse(event.target.value);
   // };
 
+  const handleSearch = (event: string) => {
+    localStorage.setItem("search", event);
+  };
+
+  const search = localStorage.getItem("search");
+
   return (
     <>
       <div
@@ -124,20 +129,41 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
           justifyContent: "center",
         }}
       >
-        <Button
-          onClick={handleOpen}
+        <div
           style={{
-            backgroundColor: "#72bf44",
             color: "white",
             width: "80%",
             borderRadius: "10px",
-            padding: "10px",
+            display: "flex",
+            justifyContent: "start",
+            padding: "20px",
             marginBottom: "10px",
             marginTop: "10px",
+            border: "2px solid #72bf44",
+            gap: "1rem",
           }}
         >
-          Clique aqui para fazer uma publicação
-        </Button>
+          <div
+            onClick={handleOpen}
+            style={{
+              backgroundColor: "#72bf44",
+              width: "3rem",
+              height: "3rem",
+              justifyContent: "center",
+              display: "flex",
+              alignItems: "center",
+              borderRadius: "50%",
+            }}
+          >
+            +
+          </div>
+          <input
+            placeholder="Qual a sua dúvida?"
+            style={{ width: "100%" }}
+            defaultValue={search ? search : ""}
+            onChange={(event) => handleSearch(event.target.value)}
+          />
+        </div>
       </div>
       <Modal
         open={ModalOpen}
@@ -173,9 +199,7 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
                 marginBottom: "10px",
               }}
             >
-              <p style={{ color: "black", marginTop: "12px" }}>
-                Nova Publicação
-              </p>
+              <p style={{ color: "black", marginTop: "12px" }}>Nova Pergunta</p>
               <Button style={{ color: "black" }} onClick={handleModalClose}>
                 X
               </Button>
@@ -199,7 +223,7 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
             </div> */}
 
             <TextareaAutosize
-              placeholder="O que deseja compartilhar hoje?"
+              placeholder="O que deseja perguntar hoje?"
               style={{
                 width: "100%",
                 height: "100px",
