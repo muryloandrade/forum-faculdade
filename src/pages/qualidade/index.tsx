@@ -22,13 +22,23 @@ export const Quality = () => {
             className="card"
             onClick={() => navigate("/qualidade/orthography")}
           >
-            Orientações de ortografia
+            {/* <img
+              src="https://infinittusexatas.com.br/wp-content/uploads/2021/04/ortografia-uso-dos-porques-portugues-resumo-e-mapa-mental-1.jpeg"
+              style={{
+                width: "15rem",
+                height: "15rem",
+              }}
+            /> */}
+            <p>Dicas ortográficas</p>
           </div>
           <div
             className="card"
             onClick={() => navigate("/qualidade/discipline")}
           >
-            Orientações de Disciplina
+            Estratégia de estudos para os alunos
+          </div>
+          <div className="card" onClick={() => navigate("/qualidade/genero")}>
+            Igualdade de gênero na educação
           </div>
         </div>
       </div>

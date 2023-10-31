@@ -158,7 +158,7 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
             +
           </div>
           <input
-            placeholder="Qual a sua dúvida?"
+            placeholder="Deseja procurar um depoimento semelhante?"
             style={{ width: "100%" }}
             defaultValue={search ? search : ""}
             onChange={(event) => handleSearch(event.target.value)}

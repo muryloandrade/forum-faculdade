@@ -1,8 +1,9 @@
 .card {
     box-shadow: 1px rgba(0, 0, 0, 0.1);
-    height: 10rem;
     border: 2px solid #72bf44;
     padding: 10px;
+    max-width: 20rem;
+    min-width: 20rem;
     cursor: pointer;
     transition: box-shadow 0.3s; /* Adiciona uma transição suave para a propriedade box-shadow */
   }

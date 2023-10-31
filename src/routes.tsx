@@ -7,6 +7,7 @@ import { Config } from "./pages/config/config";
 import { Quality } from "./pages/qualidade";
 import { Orthography } from "./pages/qualidade/components/ortografia";
 import { Discipline } from "./pages/qualidade/components/discipline";
+import { Genero } from "./pages/qualidade/components/genero";
 
 const Router: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const Router: React.FC = () => {
         <Route path="/qualidade" element={<Quality />} />
         <Route path="/qualidade/orthography" element={<Orthography />} />
         <Route path="/qualidade/discipline" element={<Discipline />} />
+        <Route path="/qualidade/genero" element={<Genero />} />
         <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
     </BrowserRouter>
