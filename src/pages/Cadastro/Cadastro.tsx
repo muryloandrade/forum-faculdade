@@ -1,6 +1,5 @@
 import { Input } from "@material-ui/core";
 import { Logo } from "../../components/NavBar/Navbar-styled";
-import LogoImg from "../../assets/studyShare-retangle.png";
 import { useNavigate } from "react-router-dom";
 import { ButtonLogin } from "../Login/login-styled";
 import LogoUniessa from "../../assets/uniessa/logo-uniessa-top.png";
@@ -108,7 +107,7 @@ export const Cadastro = () => {
 
   const saveUser = useCallback(() => {
     axios
-      .post("http://localhost:7010/users", {
+      .post("https://mocki.io/v1/b83210eb-ca74-40fe-bfd8-6a321ae63e92/users", {
         nameUser: name,
         email: email,
         password: password,

@@ -1,5 +1,5 @@
-import { Button, Input, Modal, TextareaAutosize } from "@material-ui/core";
-import { useCallback, useEffect, useState } from "react";
+import { Button, Modal, TextareaAutosize } from "@material-ui/core";
+import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import axios from "axios";
 import { Information, Profile, ProfilePhoto } from "../Publicação/publi-styled";
@@ -37,39 +37,51 @@ export const Coments: React.FC<INewPublic> = ({
     setModalOpen(false);
   };
 
+  console.log(comenta);
+
   useEffect(() => {
     axios
-      .get(`http://localhost:7010/comentsPosts?idPost=${idpost}`)
+      .get(`https://mocki.io/v1/b83210eb-ca74-40fe-bfd8-6a321ae63e92`)
       .then((res) => {
-        setComenta(res.data);
+        const respondes = res.data.comentsPosts;
+        setComenta(
+          respondes.find((responde: IComent) => responde.idPost === idpost)
+        );
       })
       .catch((res) => {
         console.log(res);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const id = nanoid();
   const handleComent = async () => {
     axios
-      .post<IComent>("http://localhost:7010/comentsPosts", {
-        nameUser: JSON.parse(localStorage.getItem("user") || "{}").nameUser,
-        date: "2020-01-01",
-        role: JSON.parse(localStorage.getItem("user") || "{}").role,
-        Course: JSON.parse(localStorage.getItem("user") || "{}").Course,
-        content: contentPost,
-        photo: JSON.parse(localStorage.getItem("user") || "{}").photoUser,
-        likes: 0,
-        idPost: idpost,
-        id: id,
-        image: "",
-      })
+      .post<IComent>(
+        "https://mocki.io/v1/b83210eb-ca74-40fe-bfd8-6a321ae63e92/comentsPosts",
+        {
+          nameUser: JSON.parse(localStorage.getItem("user") || "{}").nameUser,
+          date: "2020-01-01",
+          role: JSON.parse(localStorage.getItem("user") || "{}").role,
+          Course: JSON.parse(localStorage.getItem("user") || "{}").Course,
+          content: contentPost,
+          photo: JSON.parse(localStorage.getItem("user") || "{}").photoUser,
+          likes: 0,
+          idPost: idpost,
+          id: id,
+          image: "",
+        }
+      )
       .then(() => {
         console.log("Comentário adicionado com sucesso!");
         setContentPost("");
         axios
-          .get(`http://localhost:7010/comentsPosts?idPost=${idpost}`)
+          .get(`https://mocki.io/v1/b83210eb-ca74-40fe-bfd8-6a321ae63e92`)
           .then((res) => {
-            setComenta(res.data);
+            const respondes = res.data.comentsPosts;
+            setComenta(
+              respondes.find((responde: IComent) => responde.idPost === idpost)
+            );
           })
           .catch((res) => {
             console.log(res);
@@ -139,7 +151,7 @@ export const Coments: React.FC<INewPublic> = ({
                 color: "black",
               }}
             >
-              {comenta.length < 1 ? (
+              {comenta === undefined || comenta.length < 1 ? (
                 <div
                   style={{
                     display: "flex",

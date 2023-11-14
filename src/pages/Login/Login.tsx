@@ -25,7 +25,9 @@ export const Login = () => {
 
   const Logar = useCallback(() => {
     axios
-      .get(`http://localhost:7010/users?email=${email}`)
+      .get(
+        `https://mocki.io/v1/b83210eb-ca74-40fe-bfd8-6a321ae63e92/users?email=${email}`
+      )
       .then((response) => {
         setUser(response.data[0]);
         if (response.data[0].password === password) {

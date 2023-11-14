@@ -48,17 +48,20 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
 
   const SavePost = async () => {
     axios
-      .post<IPost>("http://localhost:7010/posts", {
-        nameUser: name,
-        date: "2020-01-01",
-        role: selectCategory,
-        Course: selectCourse,
-        content: contentPost,
-        photo: photoUser,
-        likes: 0,
-        id: id,
-        image: image === "" ? "" : image,
-      })
+      .post<IPost>(
+        "https://mocki.io/v1/b83210eb-ca74-40fe-bfd8-6a321ae63e92/posts",
+        {
+          nameUser: name,
+          date: "2020-01-01",
+          role: selectCategory,
+          Course: selectCourse,
+          content: contentPost,
+          photo: photoUser,
+          likes: 0,
+          id: id,
+          image: image === "" ? "" : image,
+        }
+      )
       .then(() => handleModalClose())
       .catch((e) => console.log(e));
   };
