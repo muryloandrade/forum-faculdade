@@ -19,8 +19,8 @@ interface IUser {
 
 export const Cadastro = () => {
   const navigate = useNavigate();
-  const [userVerify, setUserVerify] = useState<boolean>(false); // [
-  const [user, setUser] = useState<IUser>();
+  const [userVerify] = useState<boolean>(false); // [
+  const [user] = useState<IUser>();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
