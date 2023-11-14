@@ -16,8 +16,13 @@
     {
       "id": "L0gyKF-JkBVJlCCM65F0Q",
       "idPost": "1",
-      "idUser": "1",
-      "coment": "Muito bom o post, me ajudou muito"
+      "nameUser": "Victor Hugo",
+      "email": "victor@gmail.com",
+      "password": "12345",
+      "content": "Concordo, parabéns gilberto!",
+      "role": "Aluno",
+      "course": "Sistemas de Informação",
+      "photoUser": "https://media.licdn.com/dms/image/D4E03AQGkRN2-BprO5Q/profile-displayphoto-shrink_800_800/0/1681288458602?e=1691625600&v=beta&t=HFpozwd2f8j9RFZQaJLDIjAjawK0sK9yOEkwur8yxM8"
     }
   ],
   "users": [

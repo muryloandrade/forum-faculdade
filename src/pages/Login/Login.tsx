@@ -25,15 +25,17 @@ export const Login = () => {
 
   const Logar = useCallback(() => {
     axios
-      .get(
-        `https://mocki.io/v1/b83210eb-ca74-40fe-bfd8-6a321ae63e92/users?email=${email}`
-      )
+      .get(`https://mocki.io/v1/b83210eb-ca74-40fe-bfd8-6a321ae63e92`)
       .then((response) => {
-        setUser(response.data[0]);
-        if (response.data[0].password === password) {
+        const responseUser = response.data.users;
+        const setU = responseUser.find(
+          (responde: IUser) => responde.email === email
+        );
+        setUser(setU);
+        if (setU.password === password) {
           setUserVerify(true);
-          localStorage.setItem("user", JSON.stringify(response.data[0]));
-        } else if (response.data[0].password !== password) {
+          localStorage.setItem("user", JSON.stringify(setU));
+        } else if (setU.password !== password) {
           setError("ErroPass");
         }
       })
