@@ -6,6 +6,7 @@ import {
   Information,
 } from "./publi-styled";
 import axios from "axios";
+import { If } from "../../operators";
 // import { If } from "../../operators";
 
 interface Users {
@@ -151,6 +152,18 @@ else {
           </div>
         </Publication>
       ))}
+      <If condition={filter.length === 0}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "50vh",
+          }}
+        >
+          <h1>Nenhuma publicação encontrada</h1>
+        </div>
+      </If>
       {/* <If condition={loading}>
         <div className="spinner-border text-primary" role="status">
           <span className="visually-hidden">Loading...</span>
