@@ -4,6 +4,7 @@ import { NavBar } from "../../components/NavBar/Navbar";
 
 export const Quality = () => {
   const navigate = useNavigate();
+    const isMediumScreen = window.matchMedia("(max-width: 768px)").matches;
   return (
     <div>
       <NavBar />
@@ -17,7 +18,13 @@ export const Quality = () => {
           para nossos alunos de como aumentar sua produtividade no estudo!
         </span>
         <p>Abaixo segue os botões para você alcançar algumas dicas:</p>
-        <div style={{ display: "flex", gap: "2rem" }}>
+        <div
+          style={
+            isMediumScreen
+              ? { display: "flex", gap: "2rem",flexDirection:"column" }
+              : { display: "flex", gap: "2rem" }
+          }
+        >
           <div
             className="card"
             onClick={() => navigate("/qualidade/orthography")}
