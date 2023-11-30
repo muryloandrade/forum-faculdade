@@ -15,6 +15,12 @@ export const NavBar = () => {
 
   const isMediumScreen = window.matchMedia("(max-width: 768px)").matches;
 
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  }
+
+
   return (
     <NavBarElement>
       <Logo src="https://uniessa.com.br/wp-content/uploads/2022/09/log-uniessa.png.webp" />
@@ -29,7 +35,7 @@ export const NavBar = () => {
           <ButtonNavi onClick={() => navigate("/qualidade")}>
             <HiQuestionMarkCircle />
           </ButtonNavi>
-          <ButtonNavi onClick={() => navigate("/login")}>
+          <ButtonNavi onClick={() => handleLogout()}>
             <HiOutlineLogout />
           </ButtonNavi>
         </If>
@@ -90,7 +96,7 @@ export const NavBar = () => {
                 <ButtonNavi onClick={() => navigate("/qualidade")}>
                   <HiQuestionMarkCircle />
                 </ButtonNavi>
-                <ButtonNavi onClick={() => navigate("/login")}>
+                <ButtonNavi onClick={() => handleLogout()}>
                   <HiOutlineLogout />
                 </ButtonNavi>
               </div>

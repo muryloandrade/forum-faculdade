@@ -92,8 +92,10 @@ export const Publi: React.FC<IPubli> = ({
   useEffect(() => {
 
   setPosts( [...users].reverse());
+  const search = localStorage.getItem("search");
+  if (search !== null) {
+    
   setFilter(posts.filter((user) => {
-    const search = localStorage.getItem("search");
     if (search !== "") {
       return user.content.includes(search as string);
     } else {
@@ -101,6 +103,10 @@ export const Publi: React.FC<IPubli> = ({
     }
   }
   ));
+}
+else {
+  setFilter(posts);
+}
   }
   , [users, posts]);
 

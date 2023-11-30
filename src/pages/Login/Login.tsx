@@ -55,6 +55,13 @@ export const Login = () => {
 
   const isMediumScreen = window.matchMedia("(max-width: 768px)").matches;
 
+
+    const isUser = localStorage.getItem("user");
+
+    if (isUser) {
+      window.location.href = "/";
+    }
+
   return (
     <div style={{ display: "flex" }}>
       {error === "ErroPass" && (

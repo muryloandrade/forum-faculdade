@@ -10,6 +10,13 @@ export const Dashboard = () => {
   const [coments, setComents] = useState(false);
   const [idPost, setIdPost] = useState("");
 
+
+  const isUser = localStorage.getItem("user");
+
+  if (!isUser) {
+    window.location.href = "/login";
+  }
+
   return (
     <>
       <NavBar />

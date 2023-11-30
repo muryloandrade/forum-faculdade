@@ -20,6 +20,8 @@ interface INewPublic {
   setGet: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
+  const searchStorage = localStorage.getItem("search");
+  const [search, setSearch] = useState<string>(searchStorage || "");
   const [ModalOpen, setModalOpen] = useState(false);
   const [image, setImage] = useState<string>("");
   const [selectCourse, setSelectCourse] = useState<string>("Administração");
@@ -68,62 +70,13 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
       .catch((e) => console.log(e));
   };
 
-  // const courser = [
-  //   "Administração",
-  //   "Agronomia",
-  //   "Arquitetura e Urbanismo",
-  //   "Artes Visuais",
-  //   "Biomedicina",
-  //   "Ciência da Computação",
-  //   "Ciências Biológicas",
-  //   "Ciências Contábeis",
-  //   "Ciências Econômicas",
-  //   "Design",
-  //   "Direito",
-  //   "Educação Física",
-  //   "Enfermagem",
-  //   "Engenharia Ambiental e Sanitária",
-  //   "Engenharia Civil",
-  //   "Engenharia de Produção",
-  //   "Engenharia Elétrica",
-  //   "Engenharia Mecânica",
-  //   "Engenharia Química",
-  //   "Estética e Cosmética",
-  //   "Farmácia",
-  //   "Fisioterapia",
-  //   "Fonoaudiologia",
-  //   "Gastronomia",
-  //   "Gestão Comercial",
-  //   "Gestão de Recursos Humanos",
-  //   "Gestão Financeira",
-  //   "Jornalismo",
-  //   "Letras",
-  //   "Logística",
-  //   "Marketing",
-  //   "Medicina Veterinária",
-  //   "Nutrição",
-  //   "Odontologia",
-  //   "Pedagogia",
-  //   "Psicologia",
-  //   "Publicidade e Propaganda",
-  //   "Radiologia",
-  //   "Relações Internacionais",
-  //   "Relações Públicas",
-  //   "Serviço Social",
-  //   "Sistemas de Informação",
-  //   "Teologia",
-  //   "Turismo",
-  // ];
 
-  // const handleSelectCourse = (event: React.ChangeEvent<HTMLSelectElement>) => {
-  //   setSelectCourse(event.target.value);
-  // };
 
   const handleSearch = (event: string) => {
     localStorage.setItem("search", event);
+    setSearch(event);
   };
 
-  const search = localStorage.getItem("search");
 
   return (
     <>
