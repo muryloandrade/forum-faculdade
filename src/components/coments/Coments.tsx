@@ -100,7 +100,7 @@ export const Coments: React.FC<INewPublic> = ({
 
 
 
-
+  const isMediumScreen = window.matchMedia("(max-width: 768px)").matches;
 
 
   return (
@@ -127,7 +127,7 @@ export const Coments: React.FC<INewPublic> = ({
           }}
         >
           <div
-            style={{
+            style={!isMediumScreen ? {
               color: "white",
               backgroundColor: "#ffff",
               padding: "20px",
@@ -135,6 +135,15 @@ export const Coments: React.FC<INewPublic> = ({
               borderRadius: "10px",
               width: "fit-content",
               height: "800px",
+            }
+            : {
+              color: "white",
+              backgroundColor: "#ffff",
+              padding: "20px",
+              minWidth: "350px",
+              borderRadius: "10px",
+              width: "fit-content",
+              height: "fit-content",
             }}
           >
             <div

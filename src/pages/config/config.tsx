@@ -24,6 +24,8 @@ export const Config = (): ReactElement => {
     border: "none",
     cursor: blockSave ? "not-allowed" : "pointer",
   };
+
+    const isMediumScreen = window.matchMedia("(max-width: 768px)").matches;
   return (
     <>
       <NavBar />
@@ -36,11 +38,16 @@ export const Config = (): ReactElement => {
             alt="Avatar"
           />
           <div
-            style={{
+            style={!isMediumScreen ?{
               gap: "4px",
               width: "10rem",
               display: "flex",
               alignItems: "center",
+            } : {
+              gap: "4px",
+              width: "10rem",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
             <MdOutlineDriveFileRenameOutline />{" "}
@@ -73,7 +80,7 @@ export const Config = (): ReactElement => {
             />
           </div>
 
-          <button style={buttonStyle} disabled={blockSave}>
+          <button style={buttonStyle} disabled={true}>
             Salvar
           </button>
         </div>
