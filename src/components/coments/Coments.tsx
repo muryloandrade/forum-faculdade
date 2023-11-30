@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import axios from "axios";
 import { Information, Profile, ProfilePhoto } from "../Publicação/publi-styled";
+import { If } from "../../operators";
 
 interface INewPublic {
   coments: boolean;
@@ -37,17 +38,22 @@ export const Coments: React.FC<INewPublic> = ({
     setModalOpen(false);
   };
 
-  console.log(comenta);
 
   useEffect(() => {
     axios
       .get(`https://mocki.io/v1/4a711423-68c9-4539-a7d8-4acc74e285b8`)
       .then((res) => {
         const respondes = res.data.comentsPosts;
-        setComenta(
-          respondes.find((responde: IComent) => responde.idPost === idpost)
-        );
-      })
+        if (respondes.find((responde: IComent) => responde.idPost === idpost)){
+            setComenta([
+              respondes.find((responde: IComent) => responde.idPost === idpost),
+            ]);
+        }
+        else {
+          setComenta([]);
+        }
+      }
+      )
       .catch((res) => {
         console.log(res);
       });
@@ -79,16 +85,23 @@ export const Coments: React.FC<INewPublic> = ({
           .get(`https://mocki.io/v1/4a711423-68c9-4539-a7d8-4acc74e285b8`)
           .then((res) => {
             const respondes = res.data.comentsPosts;
-            setComenta(
-              respondes.find((responde: IComent) => responde.idPost === idpost)
-            );
-          })
-          .catch((res) => {
-            console.log(res);
-          });
+        if (respondes.find((responde: IComent) => responde.idPost === idpost)){
+            setComenta([
+              respondes.find((responde: IComent) => responde.idPost === idpost),
+            ]);
+        }
+        else {
+          setComenta([]);
+        }
       })
-      .catch((e) => console.log(e));
-  };
+    })
+    .catch((e) => console.log(e));
+  }
+
+
+
+
+
 
   return (
     <>
@@ -151,7 +164,7 @@ export const Coments: React.FC<INewPublic> = ({
                 color: "black",
               }}
             >
-              {comenta === undefined || comenta.length < 1 ? (
+              <If condition={comenta.length === 0}>
                 <div
                   style={{
                     display: "flex",
@@ -161,8 +174,9 @@ export const Coments: React.FC<INewPublic> = ({
                 >
                   NÃO TEM COMENTÁRIOS
                 </div>
-              ) : (
-                comenta.map((user) => (
+              </If>
+              <If condition={comenta.length !== 0}>
+                {comenta.map((user) => (
                   <div key={user.id} style={{ overflow: "auto" }}>
                     <Profile>
                       <ProfilePhoto
@@ -192,8 +206,8 @@ export const Coments: React.FC<INewPublic> = ({
                       </div>
                     </div>
                   </div>
-                ))
-              )}
+                ))}
+              </If>
             </div>
             <div>
               <TextareaAutosize
