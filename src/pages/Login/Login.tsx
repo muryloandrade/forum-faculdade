@@ -19,8 +19,8 @@ export const Login = () => {
   const navigate = useNavigate();
   const [userVerify, setUserVerify] = useState<boolean>(false); // [
   const [user, setUser] = useState<IUser>();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("murylo@dev.com");
+  const [password, setPassword] = useState("12345");
   const [error, setError] = useState<"ErroPass" | "ErrorEmail" | null>(null);
 
   const Logar = useCallback(() => {
@@ -134,11 +134,13 @@ export const Login = () => {
               <Input
                 placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
+                defaultValue={'murylo@dev.com'}
               />
               <Input
                 placeholder="Senha"
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
+                defaultValue={'12345'}
                 style={{
                   display: "flex",
                   flexDirection: "column",
