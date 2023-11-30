@@ -58,9 +58,14 @@ export const Login = () => {
 
     const isUser = localStorage.getItem("user");
 
+
+    useEffect(() => {
+
     if (isUser !== null) {
       navigate("/");
     }
+  }
+  , [isUser, navigate]);
 
   return (
     <div style={{ display: "flex" }}>

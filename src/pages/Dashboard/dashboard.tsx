@@ -2,7 +2,7 @@ import { Publi } from "../../components/Publicação/publi";
 import { DivPubli, DivPubli2 } from "./dashboard-styled";
 import { NavBar } from "../../components/NavBar/Navbar";
 import { NewPublic } from "../../components/newPublic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Coments } from "../../components/coments/Coments";
 import { useNavigate } from "react-router-dom";
 
@@ -18,9 +18,15 @@ export const Dashboard = () => {
 
   const navigate = useNavigate();
 
+
+    useEffect(() => {
+
+
   if (isUser === null) {
     navigate("/login");
   }
+}
+, [isUser, navigate]);
 
   return (
     <>
