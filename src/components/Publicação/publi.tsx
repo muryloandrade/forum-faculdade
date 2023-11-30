@@ -6,7 +6,7 @@ import {
   Information,
 } from "./publi-styled";
 import axios from "axios";
-import { If } from "../../operators";
+// import { If } from "../../operators";
 
 interface Users {
   nameUser: string;
@@ -34,18 +34,20 @@ export const Publi: React.FC<IPubli> = ({
   setIdpost,
 }) => {
   const [users, setUsers] = useState<Users[]>([]);
-  const [loading, setLoading] = useState(true);
-
+  const [filter, setFilter] = useState<Users[]>([]);
+  const [posts, setPosts] = useState<Users[]>([]);
+  // const [loading, setLoading] = useState(true);
+  
   const getPosts = useCallback(async () => {
     try {
       const response = await axios.get(
         "https://mocki.io/v1/4a711423-68c9-4539-a7d8-4acc74e285b8"
       );
       setUsers(JSON.parse(response.data.posts));
-      setLoading(false);
+      // setLoading(false);
     } catch (error) {
       console.error("Error fetching posts:", error);
-      setLoading(false);
+      // setLoading(false);
     }
   }, []);
 
@@ -85,16 +87,25 @@ export const Publi: React.FC<IPubli> = ({
     [coments, setComents, setIdpost]
   );
 
-  const posts = [...users].reverse();
-  const search = localStorage.getItem("search");
-  console.log(search);
-  const filter = posts.filter((user) => {
-    if (search !== null && search !== "") {
-      return user.content.includes(search);
+
+
+  useEffect(() => {
+
+  setPosts( [...users].reverse());
+  setFilter(posts.filter((user) => {
+    const search = localStorage.getItem("search");
+    if (search !== "") {
+      return user.content.includes(search as string);
     } else {
       return user;
     }
-  });
+  }
+  ));
+  }
+  , [users, posts]);
+
+
+
   return (
     <>
       {filter.map((user) => (
@@ -134,11 +145,11 @@ export const Publi: React.FC<IPubli> = ({
           </div>
         </Publication>
       ))}
-      <If condition={loading}>
+      {/* <If condition={loading}>
         <div className="spinner-border text-primary" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
-      </If>
+      </If> */}
     </>
   );
 };

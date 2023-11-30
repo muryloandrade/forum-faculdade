@@ -35,7 +35,9 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
   };
 
   const handleOpen = () => {
-    setModalOpen(true);
+    // setModalOpen(true);
+    window.location.href =
+      "https://docs.google.com/forms/d/e/1FAIpQLSeBKnr58eBLY8qkGbIqWSk8oz8C8vmh8s6ErVfEE0YHiru0ig/viewform";
   };
 
   useEffect(() => {
@@ -156,6 +158,7 @@ export const NewPublic: React.FC<INewPublic> = ({ setGet }) => {
               display: "flex",
               alignItems: "center",
               borderRadius: "50%",
+              cursor: "pointer",
             }}
           >
             +
