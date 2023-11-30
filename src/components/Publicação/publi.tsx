@@ -42,7 +42,7 @@ export const Publi: React.FC<IPubli> = ({
   const getPosts = useCallback(async () => {
     try {
       const response = await axios.get(
-        "https://mocki.io/v1/4a711423-68c9-4539-a7d8-4acc74e285b8"
+        "https://mocki.io/v1/19e66f0e-9203-43e4-9ebc-c1f24fef51c3"
       );
       setUsers(JSON.parse(response.data.posts));
       // setLoading(false);
@@ -70,7 +70,7 @@ export const Publi: React.FC<IPubli> = ({
 
   const getUsers = useCallback(async () => {
     axios
-      .get("https://mocki.io/v1/4a711423-68c9-4539-a7d8-4acc74e285b8")
+      .get("https://mocki.io/v1/19e66f0e-9203-43e4-9ebc-c1f24fef51c3")
       .then((response) => {
         setUsers(response.data.posts);
       });
