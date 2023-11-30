@@ -4,6 +4,7 @@ import { NavBar } from "../../components/NavBar/Navbar";
 import { NewPublic } from "../../components/newPublic";
 import { useState } from "react";
 import { Coments } from "../../components/coments/Coments";
+import { useNavigate } from "react-router-dom";
 
 export const Dashboard = () => {
   const [getPost, setGetPost] = useState<boolean>(false);
@@ -13,8 +14,10 @@ export const Dashboard = () => {
 
   const isUser = localStorage.getItem("user");
 
+  const navigate = useNavigate();
+
   if (!isUser) {
-    window.location.href = "/login";
+    navigate("/login");
   }
 
   return (

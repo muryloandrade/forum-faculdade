@@ -59,7 +59,7 @@ export const Login = () => {
     const isUser = localStorage.getItem("user");
 
     if (isUser) {
-      window.location.href = "/";
+      navigate("/");
     }
 
   return (
