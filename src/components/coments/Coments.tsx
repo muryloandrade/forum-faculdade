@@ -222,17 +222,22 @@ export const Coments: React.FC<INewPublic> = ({
                 onChange={(event) => setContentPost(event.target.value)}
               />
 
-              <Button
+              <button
                 style={{
                   width: "100%",
                   backgroundColor: "transparent",
                   color: "black",
                   border: "2px solid #72bf44",
+                  cursor: "not-allowed",
+                  padding: "10px",
+                  opacity: "0.5",
+                  
                 }}
+                disabled={true}
                 onClick={() => handleComent()}
               >
                 Comentar
-              </Button>
+              </button>
             </div>
           </div>
         </div>
