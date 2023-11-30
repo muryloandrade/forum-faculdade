@@ -52,6 +52,9 @@ export const Login = () => {
     }
   }, [userVerify, navigate, user]);
 
+
+  const isMediumScreen = window.matchMedia("(max-width: 768px)").matches;
+
   return (
     <div style={{ display: "flex" }}>
       {error === "ErroPass" && (
@@ -104,7 +107,7 @@ export const Login = () => {
             gap: "20px",
           }}
         >
-          <div style={{ width: "300px", height: "250px" }}>
+          <div style={!isMediumScreen ? { width: "300px", height: "250px" } : { width: "150px", height: "300px" }}>
             <div
               style={{
                 display: "flex",
@@ -142,7 +145,7 @@ export const Login = () => {
                   marginTop: "20px",
                 }}
               />
-              <p
+              {/* <p
                 style={{
                   color: "black",
                   justifyContent: "end",
@@ -152,9 +155,9 @@ export const Login = () => {
                 onClick={() => navigate("/esqueceu-senha")}
               >
                 esqueceu a senha?
-              </p>
+              </p> */}
             </div>
-            <div>
+            <div style={{marginTop:"1.5rem"}}>
               <ButtonLogin onClick={() => Logar()}>Entrar</ButtonLogin>
               <ButtonLogin
                 onClick={() => navigate("/cadastro")}
