@@ -14,9 +14,11 @@ export const Dashboard = () => {
 
   const isUser = localStorage.getItem("user");
 
+  console.log(isUser);
+
   const navigate = useNavigate();
 
-  if (!isUser) {
+  if (isUser === null) {
     navigate("/login");
   }
 

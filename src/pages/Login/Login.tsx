@@ -58,7 +58,7 @@ export const Login = () => {
 
     const isUser = localStorage.getItem("user");
 
-    if (isUser) {
+    if (isUser !== null) {
       navigate("/");
     }
 
