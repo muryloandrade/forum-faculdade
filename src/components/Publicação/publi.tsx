@@ -39,9 +39,9 @@ export const Publi: React.FC<IPubli> = ({
   const getPosts = useCallback(async () => {
     try {
       const response = await axios.get(
-        "https://mocki.io/v1/b83210eb-ca74-40fe-bfd8-6a321ae63e92/posts"
+        "https://mocki.io/v1/4a711423-68c9-4539-a7d8-4acc74e285b8"
       );
-      setUsers(JSON.parse(response.data));
+      setUsers(JSON.parse(response.data.posts));
       setLoading(false);
     } catch (error) {
       console.error("Error fetching posts:", error);
@@ -67,7 +67,7 @@ export const Publi: React.FC<IPubli> = ({
 
   const getUsers = useCallback(async () => {
     axios
-      .get("https://mocki.io/v1/b83210eb-ca74-40fe-bfd8-6a321ae63e92")
+      .get("https://mocki.io/v1/4a711423-68c9-4539-a7d8-4acc74e285b8")
       .then((response) => {
         setUsers(response.data.posts);
       });

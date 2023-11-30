@@ -41,7 +41,7 @@ export const Coments: React.FC<INewPublic> = ({
 
   useEffect(() => {
     axios
-      .get(`https://mocki.io/v1/b83210eb-ca74-40fe-bfd8-6a321ae63e92`)
+      .get(`https://mocki.io/v1/4a711423-68c9-4539-a7d8-4acc74e285b8`)
       .then((res) => {
         const respondes = res.data.comentsPosts;
         setComenta(
@@ -76,7 +76,7 @@ export const Coments: React.FC<INewPublic> = ({
         console.log("Comentário adicionado com sucesso!");
         setContentPost("");
         axios
-          .get(`https://mocki.io/v1/b83210eb-ca74-40fe-bfd8-6a321ae63e92`)
+          .get(`https://mocki.io/v1/4a711423-68c9-4539-a7d8-4acc74e285b8`)
           .then((res) => {
             const respondes = res.data.comentsPosts;
             setComenta(
